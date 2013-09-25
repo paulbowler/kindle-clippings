@@ -14,7 +14,13 @@
 	[clipping]
 	(clojure.string/split clipping #"\r\n")
 
-(defn authors
+(defn get-authors
 	"Splits the authors section string into individual author names"
 	[authors]
-	(clojure.string/split authors #"(, | and )"))
+	(println authors)
+	(clojure.string/split authors #", | and "))
+
+(defn title-author-line
+	[line1]
+	(let [v (re-seq #"^([A-Za-z0-9 \(\)-,]+) \(([A-Za-z0-9 ,-]+)\)$" line1)]
+		{:title (nth (first v) 1) :authors (get-authors (last (first v)))}))
