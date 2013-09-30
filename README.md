@@ -4,15 +4,16 @@ A Clojure library to parse a string representation of the 'My_Clippings.txt' fil
 
 ## Usage
 
-```
+```clojure
 (parse (slurp "resources/My Clippings.txt"))
 ```
 
 Returns a sequence of maps, thus:
 
-```
-({:title "How an Economy Grows and Why It Crashes", :authors ("Andrew J. Schiff" "Peter D. Schiff"), :page "5",
-:location "1134-37", :clipping "During the Depression, President Roosevelt decided to devalue the dollar..."})
+```clojure
+({:title "How an Economy Grows and Why It Crashes", :authors ("Andrew J. Schiff" "Peter D. Schiff"),
+:page "5", :location "1134-37",
+:clipping "During the Depression, President Roosevelt decided to devalue the dollar..."})
 ```
 
 ## License
