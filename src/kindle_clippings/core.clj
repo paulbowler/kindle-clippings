@@ -6,6 +6,8 @@
 
 (def title-author-regex #"^([^\r\n]+) \(([^\r\n\(\)]+)\)$")
 
+(def meta-regex #"^- Highlight(?: on Page )?([0-9a-z]*)?(?: \|)? Loc. (.*)  \| Added on (.*)$")
+
 (defn clippings-seq
 	"Separates each Kindle clipping from the input text into a sequence"
 	[txt]
@@ -26,6 +28,10 @@
 	[line1]
 	(split-authors (last (first (re-seq title-author-regex line1)))))
 
+(defn get-meta
+  [line2]
+  (flatten(re-seq meta-regex line2)))
+
 (defn clipping-lines
 	"Splits each clipping into its individual lines"
 	[clipping]
@@ -34,8 +40,10 @@
         line2 (second lines)
         clipping (nth lines 2)
         title (get-title line1)
-        authors (get-authors line1)]
-  {:title title, :authors authors, :clipping clipping}))
+        authors (get-authors line1)
+        page (nth (get-meta line2) 1)
+        loc (nth (get-meta line2) 2)]
+          {:title title, :authors authors, :page page, :location loc, :clipping clipping}))
 
 (defn parse [file]
   (map clipping-lines (clippings-seq file)))
