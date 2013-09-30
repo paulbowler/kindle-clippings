@@ -12,8 +12,8 @@
 
 (defn- get-title
   "Get the title from the first line"
-	[line1]
-	(second (first (re-seq title-author-regex line1))))
+  [line1]
+  (second (first (re-seq title-author-regex line1))))
 
 (defn- format-author
   [author]
@@ -21,8 +21,8 @@
 
 (defn- split-authors
   "Splits the authors section string into individual author names"
-	[authors]
-	(map format-author (clojure.string/split authors #", | and ")))
+  [authors]
+  (map format-author (clojure.string/split authors #", | and ")))
 
 (defn- get-authors
   "Get a set of authors from line 1"
@@ -34,8 +34,8 @@
   (flatten(re-seq meta-regex line2)))
 
 (defn- clipping-lines
-	"Splits each clipping into its individual lines"
-	[clipping]
+  "Splits each clipping into its individual lines"
+  [clipping]
   (let [lines (filter #(not (empty? %)) (clojure.string/split (first clipping) #"[\r\n]"))
         line1 (first lines)
         line2 (second lines)
