@@ -45,8 +45,11 @@
         loc (nth (get-meta line2) 2)]
           {:title title, :authors authors, :page page, :location loc, :clipping clipping}))
 
-(defn parse [file]
-  (map clipping-lines (clippings-seq file)))
+(defn parse [str]
+  (map clipping-lines (clippings-seq str)))
+
+
+
 
 
 
