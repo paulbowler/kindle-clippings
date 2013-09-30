@@ -36,20 +36,20 @@
   (flatten(re-seq meta-regex line2)))
 
 (defn- clipping-lines
-  "Splits each clipping into its individual lines"
+  "Splits each clipping into a map of attributes"
   [clipping]
   (let [lines (filter #(not (empty? %)) (clojure.string/split (first clipping) #"[\r\n]"))
         line1 (first lines)
         line2 (second lines)
         clipping (nth lines 2)
         title (get-title line1)
-        authors (get-authors line1)
+        authors (into '() (get-authors line1))
         page (nth (get-meta line2) 1)
         loc (nth (get-meta line2) 2)]
     {:title title, :authors authors, :page page, :location loc, :clipping clipping}))
 
 (defn parse [str]
-  "Parses a Kindle clippings file into a map"
+  "Parses a Kindle clippings string into a map"
   (map clipping-lines (clippings-seq str)))
 
 
