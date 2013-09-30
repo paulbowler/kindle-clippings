@@ -5,7 +5,7 @@ A Clojure library to parse a string representation of the 'My_Clippings.txt' fil
 ## Usage
 
 ```
-(parse <string>)
+(parse (slurp "resources/My Clippings.txt"))
 ```
 
 Returns a sequence of maps, thus:
