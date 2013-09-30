@@ -15,10 +15,14 @@
 	[line1]
 	(second (first (re-seq title-author-regex line1))))
 
+(defn- format-author
+  [author]
+  (clojure.string/join " " (map clojure.string/capitalize (clojure.string/split author #"[ ]"))))
+
 (defn- split-authors
 	"Splits the authors section string into individual author names"
 	[authors]
-	(clojure.string/split authors #", | and "))
+	(map format-author (clojure.string/split authors #", | and ")))
 
 (defn- get-authors
   "Get a set of authors from line 1"
