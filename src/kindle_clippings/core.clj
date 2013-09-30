@@ -16,6 +16,7 @@
   (second (first (re-seq title-author-regex line1))))
 
 (defn- format-author
+  "Reformat the author names with correct capitalization"
   [author]
   (clojure.string/join " " (map clojure.string/capitalize (clojure.string/split author #"[ ]"))))
 
@@ -30,6 +31,7 @@
   (split-authors (last (first (re-seq title-author-regex line1)))))
 
 (defn- get-meta
+   "Get the page number (if it exists) and clipping locaiton"
   [line2]
   (flatten(re-seq meta-regex line2)))
 
@@ -41,12 +43,13 @@
         line2 (second lines)
         clipping (nth lines 2)
         title (get-title line1)
-        authors (get-authors line1)
+        authors (into '() (get-authors line1))
         page (nth (get-meta line2) 1)
         loc (nth (get-meta line2) 2)]
     {:title title, :authors authors, :page page, :location loc, :clipping clipping}))
 
 (defn parse [str]
+  "Parses a Kindle clippings file into a map"
   (map clipping-lines (clippings-seq str)))
 
 
