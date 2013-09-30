@@ -43,7 +43,7 @@
         line2 (second lines)
         clipping (nth lines 2)
         title (get-title line1)
-        authors (into '() (get-authors line1))
+        authors (get-authors line1)
         page (nth (get-meta line2) 1)
         loc (nth (get-meta line2) 2)]
     {:title title, :authors authors, :page page, :location loc, :clipping clipping}))
