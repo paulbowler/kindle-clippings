@@ -1,10 +1,19 @@
 # kindle-clippings
 
-A Clojure library to parse the My_Clippings.txt file on Kindle devices.
+A Clojure library to parse a string representation of the 'My_Clippings.txt' file on Kindle book readers.
 
 ## Usage
 
-FIXME
+```
+(parse <string>)
+```
+
+Returns a sequence of maps, thus:
+
+```
+({:title "How an Economy Grows and Why It Crashes", :authors ("Andrew J. Schiff" "Peter D. Schiff"), :page "5",
+:location "1134-37", :clipping "During the Depression, President Roosevelt decided to devalue the dollar..."})
+```
 
 ## License
 
